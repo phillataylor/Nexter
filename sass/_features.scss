@@ -1,4 +1,35 @@
 .features {
-    background-color: $color-grey-light-2;
+    
     grid-column: center-start / center-end;
+
+    margin: 15rem 0;
+
+    display: grid;
+    // grid-template-columns: repeat(3, 1fr); //initial while building
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr)); //responsive version
+    gap: 6rem;
+    // we don't really need to define the rows since they will be implicit when the times roll out
+    align-items: start; // for the two items in the right column, change from stretch to start so they are aligned at the top
+}
+
+.feature {
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    // manytimes we don't need to define the rows, just the columns since they will be expressed implicitly
+    grid-row-gap: 1.5rem;
+    grid-column-gap: 2.5rem;
+    
+
+    &__icon {
+        fill: $color-primary;
+        width: 4.5rem;
+        height: 4.5rem;
+        // grid-row: 1 / -1;--> end of the explicit grid so the -1 won't work
+        grid-row: 1 / span 2;
+        transform: translateY(-1rem);
+    }
+
+    &__text {
+        font-size: 1.7rem;
+    }
 }
