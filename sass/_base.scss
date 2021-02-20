@@ -14,6 +14,12 @@ $color-grey-dark-2: #6D5D4B;
 $font-primary: 'Nunito', sans-serif;
 $font-display: 'Josefin Sans', sans-serif;
 
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em;  //1200px / 16 = 75em
+$bp-large:  62.5em; //1000px / 16 = 62.5
+$bp-medium: 50em;  //800px
+$bp-small: 37.5em;  //600px
+
 *,
 *::before,
 *::after {
@@ -25,6 +31,10 @@ $font-display: 'Josefin Sans', sans-serif;
 html {
     box-sizing: border-box;
     font-size: 62.5%; // 10px/16px = 62.5% -> 1rem = 10px
+
+    @media only screen and (max-width: $bp-largest) {
+        font-size: 50%;
+    }
 }
 
 body {
@@ -38,5 +48,17 @@ body {
     display: grid;
     grid-template-rows: 80vh min-content 40vw min-content repeat(3, min-content); 
     grid-template-columns: [sidebar-start] 8rem [sidebar-end full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content,  14rem ) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+
+    @media only screen and (max-width: $bp-large) {
+        grid-template-rows: 6rem 80vh min-content 40vw min-content repeat(3, min-content); 
+        grid-template-columns: [full-start] minmax(6rem, 1fr) [center-start] repeat(8, [col-start] minmax(min-content,  14rem ) [col-end]) [center-end] minmax(6rem, 1fr) [full-end];
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+        // grid-template-rows: 6rem calc(100vh - 6rem) min-content min-content min-content min-content repeat(3, min-content);   
+        
+        // The line below is the same as the commented out code above. Implicit rows are min-content by default. We changed to this as we no longer need the 40vw definition for the 'stories content' section since it starts to breakdown after 800px breakpoint
+        grid-template-rows: 6rem calc(100vh - 6rem);  
+    }
 }
 
